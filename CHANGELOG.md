@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.2.0 - 2020-02-10
+### Added
+- Adds `apiLanguage` and `apiRegion` settings  
+### Changed
+- Changes plugin vendor name and namespace from "swixpop" to "vaersaagod"
+
 ## 2.1.1 - 2019-02-27
 ### Fixed
 - Bug where place data with emojis would prevent saving of field

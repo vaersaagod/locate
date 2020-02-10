@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2018 Isaac Gray
  */
 
-namespace swixpop\locate\assetbundles\locatefieldfield;
+namespace vaersaagod\locate\assetbundles\locatefieldfield;
 
 use Craft;
 use craft\web\AssetBundle;
@@ -32,7 +32,7 @@ class LocateFieldFieldAsset extends AssetBundle
     public function init()
     {
         // define the path that your publishable resources live
-        $this->sourcePath = "@swixpop/locate/assetbundles/locatefieldfield/dist";
+        $this->sourcePath = "@vaersaagod/locate/assetbundles/locatefieldfield/dist";
 
         // define the dependencies
         $this->depends = [

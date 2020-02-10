@@ -8,10 +8,10 @@
  * @copyright Copyright (c) 2018 Isaac Gray
  */
 
-namespace swixpop\locate;
+namespace vaersaagod\locate;
 
-use swixpop\locate\models\Settings;
-use swixpop\locate\fields\LocateField as LocateFieldField;
+use vaersaagod\locate\models\Settings;
+use vaersaagod\locate\fields\LocateField as LocateFieldField;
 
 use Craft;
 use craft\base\Plugin;

@@ -8,9 +8,9 @@
  * @copyright Copyright (c) 2018 Isaac Gray
  */
 
-namespace swixpop\locate\models;
+namespace vaersaagod\locate\models;
 
-use swixpop\locate\Locate;
+use vaersaagod\locate\Locate;
 
 use Craft;
 use craft\base\Model;
@@ -36,12 +36,22 @@ class Settings extends Model
     public $autocompleteOptions;
 
     /**
+     * @var string|null
+     */
+    public $apiLanguage;
+
+    /**
+     * @var string|null
+     */
+    public $apiRegion;
+
+    /**
      * @inheritDoc
      */
     public function rules()
     {
         return [
-            [['googleMapsApiKey', 'autocompleteOptions'], 'string']
+            [['googleMapsApiKey', 'autocompleteOptions', 'apiLanguage', 'apiRegion'], 'string']
         ];
     }
 }

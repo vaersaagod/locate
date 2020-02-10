@@ -1,8 +1,8 @@
 {
-    "name": "swixpop/locate",
+    "name": "vaersaagod/locate",
     "description": "Harness the power of the Google Autocomplete API inside Craft. Adds an autocomplete search box to Craft entries.",
     "type": "craft-plugin",
-    "version": "2.1.1",
+    "version": "2.2.0",
     "keywords": [
         "craft",
         "cms",
@@ -16,8 +16,8 @@
         "locations"
     ],
     "support": {
-        "docs": "https://github.com/swixpop/craft-locate/blob/master/README.md",
-        "issues": "https://github.com/swixpop/craft-locate/issues"
+        "docs": "",
+        "issues": ""
     },
     "license": "MIT",
     "authors": [
@@ -32,7 +32,7 @@
     },
     "autoload": {
         "psr-4": {
-          "swixpop\\locate\\": "src/"
+          "vaersaagod\\locate\\": "src/"
         }
     },
     "extra": {
@@ -40,7 +40,7 @@
         "handle": "locate",
         "hasCpSettings": true,
         "hasCpSection": false,
-        "changelogUrl": "https://raw.githubusercontent.com/swixpop/craft-locate/master/CHANGELOG.md",
-        "class": "swixpop\\locate\\Locate"
+        "changelogUrl": "",
+        "class": "vaersaagod\\locate\\Locate"
     }
 }

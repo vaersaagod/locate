@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2018 Isaac Gray
  */
 
-namespace swixpop\locate\assetbundles\Locate;
+namespace vaersaagod\locate\assetbundles\Locate;
 
 use Craft;
 use craft\web\AssetBundle;
@@ -31,7 +31,7 @@ class LocateAsset extends AssetBundle
     public function init()
     {
         // define the path that your publishable resources live
-        $this->sourcePath = "@swixpop/locate/assetbundles/locate/dist";
+        $this->sourcePath = "@vaersaagod/locate/assetbundles/locate/dist";
 
         // define the dependencies
         $this->depends = [

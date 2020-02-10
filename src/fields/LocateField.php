@@ -8,14 +8,14 @@
  * @copyright Copyright (c) 2018 Isaac Gray
  */
 
-namespace swixpop\locate\fields;
+namespace vaersaagod\locate\fields;
 
 use craft\base\Plugin;
 use craft\base\PluginInterface;
 use craft\elements\db\ElementQueryInterface;
-use swixpop\locate\Locate;
-use swixpop\locate\assetbundles\locatefieldfield\LocateFieldFieldAsset;
-use swixpop\locate\models\LocateModel;
+use vaersaagod\locate\Locate;
+use vaersaagod\locate\assetbundles\locatefieldfield\LocateFieldFieldAsset;
+use vaersaagod\locate\models\LocateModel;
 
 use craft\helpers\StringHelper;
 
@@ -192,11 +192,27 @@ class LocateField extends Field
         // Get our id and namespace
         $id = Craft::$app->getView()->formatInputId($this->handle);
         $namespacedId = Craft::$app->getView()->namespaceInputId($id);
-        $apiKey = Locate::getInstance()->getSettings()->googleMapsApiKey;
 
+        $settings = Locate::getInstance()->getSettings();
+
+        $apiKey = $settings->googleMapsApiKey;
 
         if ($apiKey) {
-            Craft::$app->getView()->registerJsFile('https://maps.googleapis.com/maps/api/js?key=' . $apiKey . '&libraries=places');
+
+            $apiLanguage = $settings->apiLanguage;
+            $apiRegion = $settings->apiRegion;
+
+            $apiUrl = 'https://maps.googleapis.com/maps/api/js?key=' . $apiKey . '&libraries=places';
+
+            if ($apiLanguage) {
+                $apiUrl .= "&language={$apiLanguage}";
+            }
+
+            if ($apiRegion) {
+                $apiUrl .= "&region={$apiRegion}";
+            }
+
+            Craft::$app->getView()->registerJsFile($apiUrl);
 
             if ($this->getSettings()['optionsObject']) {
                 $jsonOptions = $this->getSettings()['optionsObject'];

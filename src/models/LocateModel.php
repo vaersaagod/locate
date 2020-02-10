@@ -8,9 +8,9 @@
  * @copyright Copyright (c) 2018 Isaac Gray
  */
 
-namespace swixpop\locate\models;
+namespace vaersaagod\locate\models;
 
-use swixpop\locate\Locate;
+use vaersaagod\locate\Locate;
 
 use Craft;
 use craft\base\Model;
