@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2018 Isaac Gray
  */
 
-namespace vaersaagod\locate\assetbundles\Locate;
+namespace vaersaagod\locate\assetbundles\locate;
 
 use Craft;
 use craft\web\AssetBundle;
