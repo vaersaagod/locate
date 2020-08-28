@@ -2,7 +2,7 @@
     "name": "vaersaagod/locate",
     "description": "Harness the power of the Google Autocomplete API inside Craft. Adds an autocomplete search box to Craft entries.",
     "type": "craft-plugin",
-    "version": "2.2.0",
+    "version": "2.3.0",
     "keywords": [
         "craft",
         "cms",
@@ -16,19 +16,18 @@
         "locations"
     ],
     "support": {
-        "docs": "",
-        "issues": ""
+        "docs": "https://github.com/vaersaagod/locate/blob/master/README.md",
+        "issues": "https://github.com/vaersaagod/locate/issues"
     },
     "license": "MIT",
     "authors": [
         {
-            "name": "Isaac Gray",
+            "name": "Værsågod",
             "homepage": "https://www.vaersaagod.no/"
         }
     ],
     "require": {
-        "php": "^7.0",
-        "craftcms/cms": "^3.0.0-RC1"
+        "craftcms/cms": "^3.5.7"
     },
     "autoload": {
         "psr-4": {
@@ -40,7 +39,7 @@
         "handle": "locate",
         "hasCpSettings": true,
         "hasCpSection": false,
-        "changelogUrl": "",
+        "changelogUrl": "https://raw.githubusercontent.com/vaersaagod/locate/master/CHANGELOG.md",
         "class": "vaersaagod\\locate\\Locate"
     }
 }

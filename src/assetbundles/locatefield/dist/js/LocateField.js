@@ -12,7 +12,7 @@
 
 ;(function ($, window, document, undefined) {
 
-    var pluginName = "LocateLocateField",
+    var pluginName = "LocateField",
         defaults = {};
 
     // Plugin constructor
@@ -32,24 +32,32 @@
         init: function (id) {
             var _this = this;
 
+            console.log(_this.options);
 
             $(function () {
-                var fields = {
-                    lat: document.getElementById(_this.options.prefix + _this.options.name + '-lat'),
-                    lng: document.getElementById(_this.options.prefix + _this.options.name + '-lng'),
-                    placeid: document.getElementById(_this.options.prefix + _this.options.name + '-placeid'),
-                    locationData: document.getElementById(_this.options.prefix + _this.options.name + '-locationData'),
-                }
-                var input = document.getElementById(_this.options.prefix + _this.options.name + '-location');
 
-                var options = JSON.parse('{' + _this.options.optionsObject + '}');
+                var fields = {
+                    lat: document.getElementById(_this.options.namespace + '-lat'),
+                    lng: document.getElementById(_this.options.namespace + '-lng'),
+                    placeid: document.getElementById(_this.options.namespace + '-placeid'),
+                    locationData: document.getElementById(_this.options.namespace + '-locationData'),
+                };
+
+                var input = document.getElementById(_this.options.namespace + '-location');
+
+                var options = JSON.parse('{' + _this.options.optionsObject + '}') || {};
+
+                if (!options.fields || !options.fields.length) {
+                    options.fields = ['geometry', 'address_components'];
+                }
+
                 var autocomplete = new google.maps.places.Autocomplete(input, options);
                 autocomplete.addListener('place_changed', function () {
                     var place = autocomplete.getPlace();
                     if (typeof place === 'object') {
                         if (place.hasOwnProperty('geometry')) {
                             fields.lat.value = place.geometry.location.lat();
-                            fields.lng.value = place.geometry.location.lng()
+                            fields.lng.value = place.geometry.location.lng();
                         }
 
                         if (place.hasOwnProperty('place_id')) {

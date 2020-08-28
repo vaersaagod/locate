@@ -10,17 +10,17 @@
  * @since     2.0.0
  */
 
-.swixpop-locate .locate-warn {
+.vaersaagod-locate .locate-warn {
     text-transform: uppercase;
     font-weight: bold;
     color: red;
 }
 
-.swixpop-locate .instructions {
+.vaersaagod-locate .instructions {
     max-width: 700px;
 }
 
-.swixpop-locate code {
+.vaersaagod-locate code {
     max-width: 800px;
     padding: 20px;
     display: block;
@@ -28,15 +28,15 @@
     border-radius: 3px;
 }
 
-.swixpop-locate .code-comment {
+.vaersaagod-locate .code-comment {
     display: block;
     color: #999;
     margin-bottom: 10px;
 }
-.swixpop-locate .code-break {
+.vaersaagod-locate .code-break {
     display: block;
 }
 
-.swixpop-locate .-l1 {
+.vaersaagod-locate .-l1 {
     margin-left: 20px;
 }

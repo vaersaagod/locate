@@ -22,11 +22,11 @@ To install the plugin, follow these instructions.
 
 2. Then tell Composer to load the plugin:
 
-        composer require swixpop/locate
+        composer require vaersaagod/locate
 
 3. In the Control Panel, go to Settings → Plugins and click the “Install” button for Locate, or from the command line:
 
-        ./craft install/plugin locate
+        ./craft plugin/install locate
 
 4. Configure the plugin via the plugin settings page in the control panel.
 
@@ -34,7 +34,17 @@ To install the plugin, follow these instructions.
 
 ## Configuration
 
-Navigate to Settings > Plugins > Locate. Enter your Google API key if you already have one, or [get one here](https://developers.google.com/maps/documentation/javascript/get-api-key). The settings page also allows you to customize the behaviour of the autocomplete box.
+Navigate to Settings > Plugins > Locate. Enter your Google API key if you already have one, or [get one here](https://developers.google.com/maps/documentation/javascript/get-api-key). The settings page also allows you to customize the behaviour of the autocomplete box.  
+
+### Configuration settings
+
+#### `googleMapsApiKey`
+
+#### `apiLanguage`
+
+#### `apiRegion`
+
+#### `autocompleteOptions`
 
 ### Customize the autocomplete box
 
@@ -182,4 +192,4 @@ google.maps.event.addDomListener(window, 'load', initialize);
 ```
 
 
-Brought to you by [Isaac Gray](https://www.vaersaagod.no/)
+Brought to you by [Vaersaagod](https://www.vaersaagod.no/)

@@ -15,23 +15,17 @@
 
 {% import "_includes/forms" as forms %}
 
-{% set apiKeyNotSet = apiKey | length ? false : true %}
-<div class="swixpop-locate swixpop-locate--field">
-    {% if apiKeyNotSet %}
-        {% if currentUser.admin %}
-            <span class="api-not-set-warn"><span class="api-not-set">{{ 'Important:' | t('locate') }}</span> {{ 'Before using the Location field you must set your Google Maps API key in the' | t('locate') }} <a href="{{ pluginSettingsUrl }}">{{ 'plugin settings' | t('locate') }}</a></span>
-        {% else %}
-            <span class="api-not-set-warn"><span class="api-not-set">{{ 'Important:' | t('locate') }}</span> {{ 'Please ask your site administrator to set the Google Maps API key in the Location plugin settings' | t('locate') }}</span>
-        {% endif %}
+{% set hasApiKey = apiKey|length %}
 
-    {% endif %}
-
+<div class="vaersaagod-locate vaersaagod-locate--field">
 
     {{ forms.textField({
-        id: name ~ '-location',
-        disabled: apiKeyNotSet,
+        id: id ~ '-location',
+        disabled: not hasApiKey,
         name: name ~ '[location]',
-        value: value.location ?? null }) }}
+        value: value['location'] ?? null,
+        warning: not hasApiKey ? 'The Google Maps API key has not been set. Please review the Locate plugin settings.'|t('locate')
+    }) }}
 
     {% set locationData = value.locationData ?? null %}
 
@@ -40,27 +34,34 @@
     {% endif %}
 
     {{ forms.hidden({
-        id: name ~ '-locationData',
-        disabled: apiKeyNotSet,
+        id: id ~ '-locationData',
+        disabled: not hasApiKey,
         name: name ~ '[locationData]',
-        value: locationData }) }}
-
+        value: locationData|default
+    }) }}
 
     {{ forms.hidden({
-        id: name ~ '-lat',
+        id: id ~ '-lat',
         name: name ~ '[lat]',
-        value: value.lat ?? null}) }}
+        value: value['lat'] ?? null
+    }) }}
 
     {{ forms.hidden({
-        id: name ~ '-lng',
+        id: id ~ '-lng',
         name: name ~ '[lng]',
-        value: value.lng ?? null}) }}
+        value: value['lng'] ?? null
+    }) }}
 
     {{ forms.hidden({
-        id: name ~ '-placeid',
+        id: id ~ '-placeid',
         name: name ~ '[placeid]',
-        value: value.placeid ?? null}) }}
+        value: value['placeid'] ?? null
+    }) }}
 
+    {{ forms.hidden({
+        id: id ~ '-isCpFormData',
+        name: name ~ '[isCpFormData]',
+        value: 'true'
+    }) }}
 
-    <input type="hidden" id="{{ name }}-isCpFormData" name="{{ name }}[isCpFormData]" value="true" />
 </div>

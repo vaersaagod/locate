@@ -10,17 +10,16 @@
  * @since     2.0.0
  */
 
-.swixpop-locate .api-not-set-warn {
+.vaersaagod-locate .api-not-set-warn {
     color: #666;
     font-size: 12px;
     font-style: italic;
 }
-.swixpop-locate .api-not-set {
+.vaersaagod-locate .api-not-set {
     color: red;
     font-weight: bold;
 }
 
-
-.swixpop-locate--field .field {
+.vaersaagod-locate--field .field {
     margin-bottom: 0;
 }

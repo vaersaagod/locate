@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2018 Isaac Gray
  */
 
-namespace vaersaagod\locate\assetbundles\locatefieldfield;
+namespace vaersaagod\locate\assetbundles\locatefield;
 
 use Craft;
 use craft\web\AssetBundle;
@@ -21,7 +21,7 @@ use craft\web\assets\cp\CpAsset;
  * @package   Locate
  * @since     2.0.0
  */
-class LocateFieldFieldAsset extends AssetBundle
+class LocateFieldAsset extends AssetBundle
 {
     // Public Methods
     // =========================================================================
@@ -32,7 +32,7 @@ class LocateFieldFieldAsset extends AssetBundle
     public function init()
     {
         // define the path that your publishable resources live
-        $this->sourcePath = "@vaersaagod/locate/assetbundles/locatefieldfield/dist";
+        $this->sourcePath = "@vaersaagod/locate/assetbundles/locatefield/dist";
 
         // define the dependencies
         $this->depends = [

@@ -10,22 +10,21 @@
 
 namespace vaersaagod\locate\fields;
 
-use craft\base\Plugin;
-use craft\base\PluginInterface;
-use craft\elements\db\ElementQueryInterface;
 use vaersaagod\locate\Locate;
-use vaersaagod\locate\assetbundles\locatefieldfield\LocateFieldFieldAsset;
+use vaersaagod\locate\assetbundles\locatefield\LocateFieldAsset;
 use vaersaagod\locate\models\LocateModel;
-
-use craft\helpers\StringHelper;
 
 use Craft;
 use craft\base\ElementInterface;
 use craft\base\Field;
+use craft\elements\db\ElementQueryInterface;
 use craft\helpers\Db;
-use yii\db\Schema;
+use craft\helpers\Html;
 use craft\helpers\Json;
+use craft\helpers\StringHelper;
 use craft\helpers\UrlHelper;
+
+use yii\db\Schema;
 
 /**
  * LocateField Field
@@ -184,67 +183,66 @@ class LocateField extends Field
      */
     public function getInputHtml($value, ElementInterface $element = null): string
     {
-        if (!$value)
+        if (!$value) {
             $value = new LocateModel();
-        // Register our asset bundle
-        Craft::$app->getView()->registerAssetBundle(LocateFieldFieldAsset::class);
+        }
 
-        // Get our id and namespace
-        $id = Craft::$app->getView()->formatInputId($this->handle);
-        $namespacedId = Craft::$app->getView()->namespaceInputId($id);
+        // Register our asset bundle
+        Craft::$app->getView()->registerAssetBundle(LocateFieldAsset::class);
 
         $settings = Locate::getInstance()->getSettings();
+        $projectConfigSettings = Craft::$app->getProjectConfig()->get('plugins.locate.settings') ?? [];
 
-        $apiKey = $settings->googleMapsApiKey;
+        $apiKey = Craft::parseEnv($settings->googleMapsApiKey ?: $projectConfigSettings['googleMapsApiKey'] ?? null);
+
+        $id = Html::id($this->handle);
 
         if ($apiKey) {
 
-            $apiLanguage = $settings->apiLanguage;
-            $apiRegion = $settings->apiRegion;
-
             $apiUrl = 'https://maps.googleapis.com/maps/api/js?key=' . $apiKey . '&libraries=places';
 
+            $apiLanguage = Craft::parseEnv($settings->apiLanguage ?: $projectConfigSettings['apiLanguage'] ?? null);
             if ($apiLanguage) {
                 $apiUrl .= "&language={$apiLanguage}";
             }
 
+            $apiRegion = Craft::parseEnv($settings->apiRegion ?: $projectConfigSettings['apiRegion'] ?? null);
             if ($apiRegion) {
                 $apiUrl .= "&region={$apiRegion}";
             }
 
-            Craft::$app->getView()->registerJsFile($apiUrl);
-
-            if ($this->getSettings()['optionsObject']) {
+            if (($this->getSettings()['optionsObject'] ?? null)) {
                 $jsonOptions = $this->getSettings()['optionsObject'];
             } else {
-                $jsonOptions = Locate::getInstance()->getSettings()->autocompleteOptions;
+                $jsonOptions = Craft::parseEnv($settings->autocompleteOptions ?: $projectConfigSettings['autocompleteOptions'] ?? null);
             }
+
+            $namespacedId = Craft::$app->getView()->namespaceInputId($id);
 
             $jsonVars = [
                 'id' => $id,
                 'name' => $this->handle,
+                'optionsObject' => $jsonOptions,
                 'namespace' => $namespacedId,
-                'prefix' => Craft::$app->getView()->namespaceInputId(''),
-                'optionsObject' => $jsonOptions
             ];
+
             $jsonVars = Json::encode($jsonVars);
-            Craft::$app->getView()->registerJs("$('#{$namespacedId}-field').LocateLocateField(" . $jsonVars . ");");
+
+            Craft::$app->getView()->registerJsFile($apiUrl);
+            Craft::$app->getView()->registerJs("$('#{$namespacedId}-field').LocateField({$jsonVars});");
         }
 
         // Variables to pass down to our field JavaScript to let it namespace properly
-
 
         // Render the input template
         return Craft::$app->getView()->renderTemplate(
             'locate/_components/fields/LocateField_input',
             [
-                'name' => $this->handle,
-                'value' => $value,
-                'field' => $this,
                 'id' => $id,
-                'namespacedId' => $namespacedId,
+                'name' => $this->handle,
+                'field' => $this,
+                'value' => $value,
                 'apiKey' => $apiKey,
-                'pluginSettingsUrl' => UrlHelper::cpUrl('settings/plugins/' . Locate::$plugin->getHandle())
             ]
         );
     }

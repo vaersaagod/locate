@@ -44,7 +44,7 @@ class Locate extends Plugin
     /**
      * @var string
      */
-    public $schemaVersion = '2.1.1';
+    public $schemaVersion = '2.3.0';
 
     /**
      * @var bool
@@ -97,7 +97,7 @@ class Locate extends Plugin
         return Craft::$app->view->renderTemplate(
             'locate/settings',
             [
-                'settings' => $this->getSettings()
+                'settings' => Craft::$app->getProjectConfig()->get('plugins.locate.settings') ?? [],
             ]
         );
     }

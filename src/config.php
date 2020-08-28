@@ -23,5 +23,8 @@
  */
 
 return [
-
+    'apiLanguage' => null,
+    'autocompleteOptions' => null,
+    'googleMapsApiKey' => null,
+    'apiRegion' => null,
 ];
