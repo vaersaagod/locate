@@ -51,7 +51,7 @@ class LocateField extends Field
      */
     public static function displayName(): string
     {
-        return Craft::t('locate', 'Location');
+        return Craft::t('locate', 'Location (Locate)');
     }
 
     // Public Methods
