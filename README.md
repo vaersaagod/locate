@@ -5,7 +5,7 @@ Harness the power of the [Google Autocomplete API](https://developers.google.com
 
 ## Requirements
 
-* [Craft CMS](https://craftcms.com/) 3.0.0-beta.23 or later.
+* [Craft CMS](https://craftcms.com/) 3.5.7 or later.
 * [Google API key](https://developers.google.com/maps/documentation/javascript/get-api-key) with `
 Google Maps JavaScript API` and `Google Places API Web Service` enabled.
 
@@ -192,4 +192,17 @@ google.maps.event.addDomListener(window, 'load', initialize);
 ```
 
 
-Brought to you by [Vaersaagod](https://www.vaersaagod.no/)
+---
+
+## Price, license and support
+
+The plugin is released under the MIT license. It's made for Værsågod and friends, and no support 
+is given. Submitted issues are resolved if it scratches an itch. 
+
+## Changelog
+
+See [CHANGELOG.MD](https://raw.githubusercontent.com/vaersaagod/locate/master/CHANGELOG.md).
+
+## Credits
+
+Brought to you by [Værsågod](https://www.vaersaagod.no)
