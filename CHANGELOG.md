@@ -4,21 +4,24 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## Unreleased
+## 2.3.0 - 2020-08-29  
+
+### Fixed
+- Fixes Craft 3.5 compatibility issues  
 
 ### Added  
 - Added `swixpop/locate` -> `vaersaagod/locate` migration
 
-### Improved
-- Added setting keys to example `config.php` file  
+### Improved  
 - Add setting fields in Locate's settings page for API region and language settings  
 - Settings fields in the CP now display a warning if they are being overridden using a config file
 - Settings fields in the CP now shows the stored database/Project Config values, not the overridden values from config  
 - Settings fields in the CP now accept environment variables  
 - Locate now sets the `field` Places API options object to `geometry` and `address_components` by default   
+- Added setting keys to example `config.php` file  
 
 ### Changed  
-- Locate now requires Craft 3.5.7 or later
+- Locate now requires Craft 3.5.7 or later  
 
 ## 2.2.0 - 2020-02-10
 
