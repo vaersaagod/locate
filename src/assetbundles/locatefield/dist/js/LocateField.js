@@ -48,7 +48,7 @@
                 var options = JSON.parse('{' + _this.options.optionsObject + '}') || {};
 
                 if (!options.fields || !options.fields.length) {
-                    options.fields = ['geometry', 'address_components'];
+                    options.fields = ['place_id', 'name', 'geometry', 'address_component', 'address_components'];
                 }
 
                 var autocomplete = new google.maps.places.Autocomplete(input, options);

@@ -2,7 +2,7 @@
     "name": "vaersaagod/locate",
     "description": "Harness the power of the Google Autocomplete API inside Craft. Adds an autocomplete search box to Craft entries.",
     "type": "craft-plugin",
-    "version": "2.3.0",
+    "version": "2.3.1",
     "keywords": [
         "craft",
         "cms",
