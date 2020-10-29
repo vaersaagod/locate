@@ -6,7 +6,7 @@ Harness the power of the [Google Autocomplete API](https://developers.google.com
 ## Requirements
 
 * [Craft CMS](https://craftcms.com/) 3.5.7 or later.
-* [Google API key](https://developers.google.com/maps/documentation/javascript/get-api-key) with the Google Maps JavaScript API and Places API enabled.  
+* [Google API key](https://developers.google.com/maps/documentation/javascript/get-api-key) with the Google Maps JavaScript API, Places API and Geocoding API enabled.  
 
 #### Note:
 Google has updated their API access policy. See https://cloud.google.com/maps-platform/user-guide/
