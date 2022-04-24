@@ -1,11 +1,11 @@
 <?php
 /**
- * Locate plugin for Craft CMS 3.x
+ * Locate plugin for Craft CMS 4.x
  *
  * Harness the power of the Google Autocomplete API inside Craft. Adds an autocomplete search box to Craft entries.
  *
  * @link      https://www.vaersaagod.no/
- * @copyright Copyright (c) 2018 Isaac Gray
+ * @copyright Copyright (c) 2022 Værsågod AS
  */
 
 namespace vaersaagod\locate\models;
@@ -16,52 +16,35 @@ use Craft;
 use craft\base\Model;
 
 /**
- * @author    Isaac Gray
+ * @author    Værsågod
  * @package   Locate
  * @since     2.0.0
  */
 class LocateModel extends Model
 {
-    // Public Properties
-    // =========================================================================
 
-    /**
-     * @var string
-     */
-    public $lat = '';
+    /** @var string */
+    public string $lat = '';
 
+    /** @var string */
+    public string $lng = '';
 
-    /**
-     * @var string
-     */
-    public $lng = '';
+    /** @var string */
+    public string $location = '';
 
-    /**
-     * @var string
-     */
-    public $location = '';
+    /** @var string */
+    public string $placeid = '';
 
-    /**
-     * @var string
-     */
-    public $placeid = '';
+    /** @var array|null */
+    public ?array $locationData = null;
 
-    /**
-     * @var string
-     */
-    public $locationData = '';
-
-    // Public Methods
-    // =========================================================================
-
-    /**
-     * @return array
-     */
-    public function rules()
+    /** @inheritdoc */
+    public function rules(): array
     {
         return [
-            [['lat', 'lng', 'location', 'placeid', 'locationData'], 'string'],
-            [['lat', 'lng', 'location', 'placeid', 'locationData'], 'default', 'value' => ''],
+            [['lat', 'lng', 'location', 'placeid'], 'string'],
+            [['lat', 'lng', 'location', 'placeid'], 'default', 'value' => ''],
+            [['locationData'], 'array'],
         ];
     }
 }

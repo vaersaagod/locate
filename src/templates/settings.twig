@@ -1,12 +1,12 @@
 {# @var craft \craft\web\twig\variables\CraftVariable #}
 {#
 /**
- * Locate plugin for Craft CMS 3.x
+ * Locate plugin for Craft CMS 4.x
  *
  * Locate Settings.twig
  *
- * @author    Isaac Gray
- * @copyright Copyright (c) 2018 Isaac Gray
+ * @author    Værsågod
+ * @copyright Copyright (c) 2022 Værsågod AS
  * @link      https://www.vaersaagod.no/
  * @package   Locate
  * @since     2.0.0
@@ -29,13 +29,24 @@
     {{ forms.autosuggestField({
         first: true,
         label: "Google Maps API Key"|t('locate'),
-        instructions: 'Use your API key, or get one from <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">Google</a>. Note that the Google API Console project attached to this key needs to have the Google Maps JavaScript API and Places API enabled.' | t('locate'),
+        instructions: 'Use your API key, or get one from <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">Google</a>.' | t('locate'),
         id: 'googleMapsApiKey',
         suggestEnvVars: true,
         name: 'googleMapsApiKey',
         value: settings['googleMapsApiKey'] ?? null,
         warning: ((craft.app.config.getConfigFromFile('locate') ?? [])['googleMapsApiKey'] ?? null) ? configWarning('googleMapsApiKey')
     }) }}
+
+    <div class="readable">
+        <blockquote class="note tip">
+            <p>The Google API Console project attached to this key needs to have the following APIs enabled:</p>
+            <ul>
+                <li>Maps JavaScript API</li>
+                <li>Places API</li>
+                <li>Geocoding API</li>
+            </ul>
+        </blockquote>
+    </div>
 
     {{ forms.autosuggestField({
         label: 'Google Maps API Language' | t('locate'),

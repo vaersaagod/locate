@@ -3,8 +3,8 @@
  *
  * LocateField Field JS
  *
- * @author    Isaac Gray
- * @copyright Copyright (c) 2018 Isaac Gray
+ * @author    Værsågod
+ * @copyright Copyright (c) 2022 Værsågod AS
  * @link      https://www.vaersaagod.no/
  * @package   Locate
  * @since     2.0.0
@@ -29,10 +29,21 @@
 
     Plugin.prototype = {
 
-        init: function (id) {
+        init: function (id, time) {
+
             var _this = this;
 
-            console.log(_this.options);
+            time = time || new Date().getTime();
+
+            // Wait for Google
+            if (!window.google) {
+                if ((new Date().getTime() - time) < 5000) {
+                    setTimeout(function () {
+                        _this.init(id, time);
+                    }, 100);
+                }
+                return;
+            }
 
             $(function () {
 
@@ -44,8 +55,11 @@
                 };
 
                 var input = document.getElementById(_this.options.namespace + '-location');
+                var options = {};
 
-                var options = JSON.parse('{' + _this.options.optionsObject + '}') || {};
+                if (_this.options.optionsObject) {
+                    options = JSON.parse('{' + _this.options.optionsObject + '}') || {};
+                }
 
                 if (!options.fields || !options.fields.length) {
                     options.fields = ['place_id', 'name', 'geometry', 'address_component', 'address_components'];
@@ -66,7 +80,6 @@
 
                         fields.locationData.value = JSON.stringify(place);
                     }
-
                 });
 
                 input.addEventListener('change', function(e) {

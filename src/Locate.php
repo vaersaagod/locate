@@ -1,11 +1,11 @@
 <?php
 /**
- * Locate plugin for Craft CMS 3.x
+ * Locate plugin for Craft CMS 4.x
  *
  * Harness the power of the Google Autocomplete API inside Craft. Adds an autocomplete search box to Craft entries.
  *
  * @link      https://www.vaersaagod.no/
- * @copyright Copyright (c) 2018 Isaac Gray
+ * @copyright Copyright (c) 2022 Værsågod AS
  */
 
 namespace vaersaagod\locate;
@@ -21,7 +21,7 @@ use craft\events\RegisterComponentTypesEvent;
 use yii\base\Event;
 
 /**
- * @author    Isaac Gray
+ * @author    Værsågod
  * @package   Locate
  * @since     2.0.0
  *
@@ -30,34 +30,17 @@ use yii\base\Event;
  */
 class Locate extends Plugin
 {
-    // Static Properties
-    // =========================================================================
 
-    /**
-     * @var Locate
-     */
-    public static $plugin;
+    /** @inheritdoc */
+    public string $schemaVersion = '3.0.0';
+    
+    /** @inheritdoc */
+    public bool $hasCpSettings = true;
 
-    // Public Properties
-    // =========================================================================
-
-    /**
-     * @var string
-     */
-    public $schemaVersion = '2.3.0';
-
-    /**
-     * @var bool
-     */
-    public $hasCpSection = true;
-
-    // Public Methods
-    // =========================================================================
-
-    public function init()
+    /** @inheritdoc */
+    public function init(): void
     {
         parent::init();
-        self::$plugin = $this;
 
         // Register our fields
         Event::on(
@@ -81,10 +64,7 @@ class Locate extends Plugin
     // Protected Methods
     // =========================================================================
 
-    /**
-     * @return \craft\base\Model|null
-     */
-    protected function createSettingsModel()
+    protected function createSettingsModel(): Settings
     {
         return new Settings();
     }

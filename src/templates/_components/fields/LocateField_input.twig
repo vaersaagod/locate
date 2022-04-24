@@ -1,12 +1,12 @@
 {# @var craft \craft\web\twig\variables\CraftVariable #}
 {#
 /**
- * Locate plugin for Craft CMS 3.x
+ * Locate plugin for Craft CMS 4.x
  *
  * LocateField Field Input
  *
- * @author    Isaac Gray
- * @copyright Copyright (c) 2018 Isaac Gray
+ * @author    Værsågod
+ * @copyright Copyright (c) 2022 Værsågod AS
  * @link      https://www.vaersaagod.no/
  * @package   Locate
  * @since     2.0.0
@@ -24,7 +24,7 @@
         disabled: not hasApiKey,
         name: name ~ '[location]',
         value: value['location'] ?? null,
-        warning: not hasApiKey ? 'The Google Maps API key has not been set. Please review the Locate plugin settings.'|t('locate')
+        warning: not hasApiKey ? ('The Google Maps API key has not been set. Please review the Locate plugin settings.'|t('locate'))
     }) }}
 
     {% set locationData = value.locationData ?? null %}

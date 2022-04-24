@@ -1,11 +1,11 @@
 <?php
 /**
- * Locate plugin for Craft CMS 3.x
+ * Locate plugin for Craft CMS 4.x
  *
  * Harness the power of the Google Autocomplete API inside Craft. Adds an autocomplete search box to Craft entries.
  *
  * @link      https://www.vaersaagod.no/
- * @copyright Copyright (c) 2018 Isaac Gray
+ * @copyright Copyright (c) 2022 Værsågod AS
  */
 
 namespace vaersaagod\locate\assetbundles\locate;
@@ -16,7 +16,7 @@ use craft\web\assets\cp\CpAsset;
 
 /**
  * LocateAsset AssetBundle
- * @author    Isaac Gray
+ * @author    Værsågod
  * @package   Locate
  * @since     2.0.0
  */

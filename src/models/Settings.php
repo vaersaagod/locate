@@ -1,11 +1,11 @@
 <?php
 /**
- * Locate plugin for Craft CMS 3.x
+ * Locate plugin for Craft CMS 4.x
  *
  * Harness the power of the Google Autocomplete API inside Craft. Adds an autocomplete search box to Craft entries.
  *
  * @link      https://www.vaersaagod.no/
- * @copyright Copyright (c) 2018 Isaac Gray
+ * @copyright Copyright (c) 2022 Værsågod AS
  */
 
 namespace vaersaagod\locate\models;
@@ -16,7 +16,7 @@ use Craft;
 use craft\base\Model;
 
 /**
- * @author    Isaac Gray
+ * @author    Værsågod
  * @package   Locate
  * @since     2.0.0
  */
@@ -28,30 +28,31 @@ class Settings extends Model
     /**
      * @var string|null Google Maps API key
      */
-    public $googleMapsApiKey;
+    public ?string $googleMapsApiKey;
 
     /**
      * @var string|null Autocomplete options
      */
-    public $autocompleteOptions;
+    public ?string $autocompleteOptions;
 
     /**
      * @var string|null
      */
-    public $apiLanguage;
+    public ?string $apiLanguage;
 
     /**
      * @var string|null
      */
-    public $apiRegion;
+    public ?string $apiRegion;
 
     /**
      * @inheritDoc
      */
-    public function rules()
+    public function rules(): array
     {
-        return [
+        $rules = parent::rules();
+        return array_merge($rules, [
             [['googleMapsApiKey', 'autocompleteOptions', 'apiLanguage', 'apiRegion'], 'string']
-        ];
+        ]);
     }
 }
