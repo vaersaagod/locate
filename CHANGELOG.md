@@ -4,9 +4,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.0.1 - 2022-10-11
+
+### Fixed
+- Fixed an issue where an error would be thrown if the plugin hadn't been configured yet, and you added the field to an entry (Typed property must not be accessed before initialization).
+
 ## 3.0.0 - 2022-04-23
+
 ### Added
 - Adds Craft 4.0 compatibility
+
 ### Fixed
 - Fixes an issue where the Locate field's JS could initialise before Google's JS API had loaded  
 
