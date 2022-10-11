@@ -28,22 +28,22 @@ class Settings extends Model
     /**
      * @var string|null Google Maps API key
      */
-    public ?string $googleMapsApiKey;
+    public ?string $googleMapsApiKey = null;
 
     /**
      * @var string|null Autocomplete options
      */
-    public ?string $autocompleteOptions;
+    public ?string $autocompleteOptions = null;
 
     /**
      * @var string|null
      */
-    public ?string $apiLanguage;
+    public ?string $apiLanguage = null;
 
     /**
      * @var string|null
      */
-    public ?string $apiRegion;
+    public ?string $apiRegion = null;
 
     /**
      * @inheritDoc
