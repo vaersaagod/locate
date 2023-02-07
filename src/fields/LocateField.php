@@ -148,6 +148,7 @@ class LocateField extends Field
             $apiUrl = UrlHelper::url('https://maps.googleapis.com/maps/api/js', [
                 'key' => $apiKey,
                 'libraries' => 'places',
+                'callback' => 'Function.prototype',
             ]);
 
             $apiLanguage = App::parseEnv($settings->apiLanguage ?: $projectConfigSettings['apiLanguage'] ?? null);
