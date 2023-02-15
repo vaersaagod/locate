@@ -10,20 +10,19 @@
 
 namespace vaersaagod\locate\fields;
 
-use vaersaagod\locate\Locate;
-use vaersaagod\locate\assetbundles\locatefield\LocateFieldAsset;
-use vaersaagod\locate\models\LocateModel;
-
 use Craft;
 use craft\base\ElementInterface;
 use craft\base\Field;
-use craft\elements\db\ElementQueryInterface;
 use craft\helpers\App;
-use craft\helpers\Db;
 use craft\helpers\Html;
 use craft\helpers\Json;
+use craft\base\PreviewableFieldInterface;
 use craft\helpers\StringHelper;
 use craft\helpers\UrlHelper;
+
+use vaersaagod\locate\Locate;
+use vaersaagod\locate\assetbundles\locatefield\LocateFieldAsset;
+use vaersaagod\locate\models\LocateModel;
 
 use yii\db\Schema;
 
@@ -34,7 +33,7 @@ use yii\db\Schema;
  * @package   Locate
  * @since     2.0.0
  */
-class LocateField extends Field
+class LocateField extends Field implements PreviewableFieldInterface
 {
     // Public Properties
     // =========================================================================
@@ -62,11 +61,10 @@ class LocateField extends Field
     public function rules(): array
     {
         $rules = parent::rules();
-        $rules = array_merge($rules, [
+        return array_merge($rules, [
             ['optionsObject', 'string'],
             ['optionsObject', 'default', 'value' => ''],
         ]);
-        return $rules;
     }
 
     /** @inheritdoc */
@@ -86,11 +84,11 @@ class LocateField extends Field
 
         if (is_string($value)) {
             $attr += array_filter(json_decode($value, true) ?: [],
-                function ($key) {
+                static function($key) {
                     return in_array($key, ['lat', 'lng', 'location', 'placeid', 'locationData']);
                 }, ARRAY_FILTER_USE_KEY);
         } else if (is_array($value) && isset($value['isCpFormData'])) {
-            if (!array_key_exists('location', $value) || $value['location']  === '') {
+            if (!array_key_exists('location', $value) || $value['location'] === '') {
                 return new LocateModel();
             }
             $attr += [
@@ -126,7 +124,16 @@ class LocateField extends Field
         );
     }
 
-    /** @inheritdoc */
+    /**
+     * @param mixed $value
+     * @param ElementInterface|null $element
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     * @throws \yii\base\Exception
+     * @throws \yii\base\InvalidConfigException
+     */
     public function getInputHtml(mixed $value, ?ElementInterface $element = null): string
     {
         if (!$value) {
@@ -181,8 +188,8 @@ class LocateField extends Field
             Craft::$app->getView()->registerJsFile($apiUrl);
 
             $js = <<<JS
-$('#$namespacedId-field').LocateField($jsonVars);
-JS;
+                $('#$namespacedId-field').LocateField($jsonVars);
+            JS;
             Craft::$app->getView()->registerJs($js);
         }
 
@@ -196,6 +203,15 @@ JS;
                 'apiKey' => $apiKey,
             ]
         );
+    }
+
+    /** @inheritdoc */
+    public function getTableAttributeHtml(mixed $value, ElementInterface $element): string
+    {
+        if (!$value instanceof LocateModel) {
+            return '';
+        }
+        return $value->location;
     }
 
     /**
@@ -216,7 +232,9 @@ JS;
         foreach ($addressComponents as $component) {
             $type = $component['types'][0];
 
-            if (!$type) continue;
+            if (!$type) {
+                continue;
+            }
 
             $components[$type] = $component['long_name'];
             $components[$type . "_short"] = $component['short_name'];
@@ -225,6 +243,5 @@ JS;
         $returnData['components'] = $components;
 
         return $returnData;
-
     }
 }
