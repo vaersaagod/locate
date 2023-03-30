@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## Unreleased
+## 3.2.0 - 2023-03-30 
 ### Added  
 - It's now possible to paste a comma separated lat/lng string into Location fields, and have that lat/lng string automatically parsed into the Location field's `lat` and `lng` attributes.   
 ### Changed  
