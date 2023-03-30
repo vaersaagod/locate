@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+### Added  
+- It's now possible to paste a comma separated lat/lng string into Location fields, and have that lat/lng string automatically parsed into the Location field's `lat` and `lng` attributes.   
+### Changed  
+- Locate now requires Craft 4.3.0 or later
+
 ## 3.1.0 - 2023-02-15
 ### Added
 - Location fields are now previewable in element indexes  
