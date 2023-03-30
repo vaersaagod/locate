@@ -12,7 +12,7 @@
 
 ;(function ($, window, document, undefined) {
 
-    var pluginName = "LocateField",
+    var pluginName = 'LocateField',
         defaults = {};
 
     // Plugin constructor
@@ -51,7 +51,7 @@
                     lat: document.getElementById(_this.options.namespace + '-lat'),
                     lng: document.getElementById(_this.options.namespace + '-lng'),
                     placeid: document.getElementById(_this.options.namespace + '-placeid'),
-                    locationData: document.getElementById(_this.options.namespace + '-locationData'),
+                    locationData: document.getElementById(_this.options.namespace + '-locationData')
                 };
 
                 var input = document.getElementById(_this.options.namespace + '-location');
@@ -72,30 +72,57 @@
                         if (place.hasOwnProperty('geometry')) {
                             fields.lat.value = place.geometry.location.lat();
                             fields.lng.value = place.geometry.location.lng();
+                        } else {
+                            fields.lat.value = '';
+                            fields.lng.value = '';
                         }
 
                         if (place.hasOwnProperty('place_id')) {
                             fields.placeid.value = place.place_id;
+                        } else {
+                            fields.placeid.value = '';
                         }
 
                         fields.locationData.value = JSON.stringify(place);
+
+                    } else {
+                        fields.lat.value = '';
+                        fields.lng.value = '';
+                        fields.placeid.value = '';
+                        fields.locationData.value = '';
                     }
                 });
 
-                input.addEventListener('change', function(e) {
-                   if (!input.value) {
-                       fields.lat.value = '';
-                       fields.lng.value = '';
-                       fields.placeid.value = '';
-                   }
+                var value = input.value;
+
+                input.addEventListener('change', function (e) {
+                    if (!input.value) {
+                        fields.lat.value = '';
+                        fields.lng.value = '';
+                        fields.placeid.value = '';
+                        fields.locationData.value = '';
+                    }
+                    value = input.value;
                 });
 
-                document.addEventListener('keydown', function(e) {
+                input.addEventListener('keyup', function (e) {
+                    if (input.value === value) {
+                        return;
+                    }
+                    fields.lat.value = '';
+                    fields.lng.value = '';
+                    fields.placeid.value = '';
+                    fields.locationData.value = '';
+                    value = input.value;
+                });
+
+                document.addEventListener('keydown', function (e) {
                     var key = e.keyCode || e.which;
 
                     if (key === 13 && document.activeElement === input) {
                         e.preventDefault();
-                        $(autocomplete).trigger('place_changed');
+                        $(autocomplete)
+                            .trigger('place_changed');
                     }
                 });
             });
@@ -106,8 +133,8 @@
     // preventing against multiple instantiations
     $.fn[pluginName] = function (options) {
         return this.each(function () {
-            if (!$.data(this, "plugin_" + pluginName)) {
-                $.data(this, "plugin_" + pluginName,
+            if (!$.data(this, 'plugin_' + pluginName)) {
+                $.data(this, 'plugin_' + pluginName,
                     new Plugin(this, options));
             }
         });

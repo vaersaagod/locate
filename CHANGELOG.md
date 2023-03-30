@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ### Added  
 - It's now possible to paste a comma separated lat/lng string into Location fields, and have that lat/lng string automatically parsed into the Location field's `lat` and `lng` attributes.   
 ### Changed  
+- Location fields' selected place data is no longer retained when the field value is changed  
 - Locate now requires Craft 4.3.0 or later
 
 ## 3.1.0 - 2023-02-15
