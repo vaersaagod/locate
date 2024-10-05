@@ -1,11 +1,11 @@
-# Locate plugin for Craft CMS 4.x
+# Locate plugin for Craft CMS 5.x
 
 Harness the power of the [Google Autocomplete API](https://developers.google.com/maps/documentation/javascript/places-autocomplete) inside Craft. Adds an autocomplete search box to Craft entries which allows place and address queries to be made to the API. Populates a hidden **Location** field with `lat`, `lng`, `location`, and `placeid` which you can grab in your templates to do with as you wish.
 
 
 ## Requirements
 
-* [Craft CMS](https://craftcms.com/) 4.3.0 or later.
+* [Craft CMS](https://craftcms.com/) 5.0.0 or later.
 * [Google API key](https://developers.google.com/maps/documentation/javascript/get-api-key) with the Google Maps JavaScript API, Places API and Geocoding API enabled.  
 
 #### Note:

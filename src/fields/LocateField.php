@@ -1,11 +1,11 @@
 <?php
 /**
- * Locate plugin for Craft CMS 4.x
+ * Locate plugin for Craft CMS 5.x
  *
  * Harness the power of the Google Autocomplete API inside Craft. Adds an autocomplete search box to Craft entries.
  *
  * @link      https://www.vaersaagod.no/
- * @copyright Copyright (c) 2022 Værsågod AS
+ * @copyright Copyright (c) 2024 Værsågod AS
  */
 
 namespace vaersaagod\locate\fields;
@@ -13,6 +13,7 @@ namespace vaersaagod\locate\fields;
 use Craft;
 use craft\base\ElementInterface;
 use craft\base\Field;
+use craft\base\MergeableFieldInterface;
 use craft\helpers\App;
 use craft\helpers\Html;
 use craft\helpers\Json;
@@ -33,7 +34,7 @@ use yii\db\Schema;
  * @package   Locate
  * @since     2.0.0
  */
-class LocateField extends Field implements PreviewableFieldInterface
+class LocateField extends Field implements PreviewableFieldInterface, MergeableFieldInterface
 {
     // Public Properties
     // =========================================================================
